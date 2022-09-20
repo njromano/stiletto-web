@@ -69,12 +69,21 @@ class TradeSystem extends Component {
 
   async updateRecipes() {
     let items = await getItems();
+    const possibleCategories = [
+        'Ammo',
+        'Armors',
+        'Interactables',
+        'Resources',
+        'Rigs',
+        'Schematics',
+        'Weapons',
+        'Tools',
+        'Equipment',
+        'Liquids',
+    ];
     if (items != null) {
       items = items.filter(
-        (it) =>
-          it.category === "Resources" ||
-          it.category === "Ammo" ||
-          it.category === "Grappling Hooks"
+        (it) => possibleCategories.includes(it.category)
       );
       this.setState({ items: items });
     }
